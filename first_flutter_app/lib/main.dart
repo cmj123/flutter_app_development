@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(Home());
+import 'ui/home.dart';
 
-class Home extends StatelessWidget {
+void main() => runApp( new MaterialApp(
+  home: ScaffoldExample(),
+));
 
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text("Hello Flutter", textDirection: TextDirection.ltr,),
-    );
-  }
-}
 
