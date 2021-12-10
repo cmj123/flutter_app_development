@@ -42,6 +42,10 @@ class ScaffoldExample extends StatelessWidget {
           IconButton(onPressed: _tapButton, icon: Icon(Icons.access_alarms))
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.lightGreen,
+        child: Icon(Icons.call_missed),
+        onPressed: () => debugPrint("Tapped Floating Button"),),
       bottomNavigationBar: BottomNavigationBar(items:[
         BottomNavigationBarItem(icon: Icon(Icons.account_circle), title: Text("First")),
         BottomNavigationBarItem(icon: Icon(Icons.ac_unit), title: Text("Second")),
