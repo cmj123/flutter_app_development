@@ -1,5 +1,30 @@
 import 'package:flutter/material.dart';
 
+class CustomButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: (){
+        final snackBar = SnackBar(content: Text("Hello Again!"),
+        backgroundColor: Colors.amberAccent.shade700,
+        );
+        
+        Scaffold.of(context).showSnackBar(snackBar);
+      },
+
+      child: Container(
+        padding: EdgeInsets.all(10.0),
+        decoration: BoxDecoration(
+          color: Colors.pinkAccent,
+          borderRadius: BorderRadius.circular(8.0)
+        ),
+        child: Text("Button")
+      )
+    );
+  }
+}
+
+
 class ScaffoldExample extends StatelessWidget {
 
   _tapButton() {
@@ -17,18 +42,24 @@ class ScaffoldExample extends StatelessWidget {
           IconButton(onPressed: _tapButton, icon: Icon(Icons.access_alarms))
         ],
       ),
+      bottomNavigationBar: BottomNavigationBar(items:[
+        BottomNavigationBarItem(icon: Icon(Icons.account_circle), title: Text("First")),
+        BottomNavigationBarItem(icon: Icon(Icons.ac_unit), title: Text("Second")),
+        BottomNavigationBarItem(icon: Icon(Icons.access_alarm), title: Text("Third"))
+      ], onTap: (int index) => debugPrint("Tapped item : $index"),),
       backgroundColor: Colors.redAccent.shade100,
       body: Container(
         alignment: Alignment.center,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            InkWell(
-              child:Text("Tap me!",
-                style: TextStyle(fontSize: 23.4),),
-              onTap: () => debugPrint("tapped..."),
-
-            )
+            CustomButton()
+            // InkWell(
+            //   child:Text("Tap me!",
+            //     style: TextStyle(fontSize: 23.4),),
+            //   onTap: () => debugPrint("tapped..."),
+            //
+            // )
           ],
         )
       )
