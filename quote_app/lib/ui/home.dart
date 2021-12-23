@@ -8,7 +8,6 @@ class Wisdom extends StatefulWidget {
 }
 
 class _WisdomState extends State<Wisdom> {
-
   int _index = 0;
 
   List quotes = [
@@ -35,10 +34,38 @@ class _WisdomState extends State<Wisdom> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(quotes[_index % quotes.length]),
-            FlatButton.icon(onPressed: _showQuote,
-                icon: Icon(Icons.wb_sunny),
-                label:   Text("Inspire me!"))
+            Expanded(
+              child: Center(
+                child: Container(
+                    width: 350,
+                    height: 200,
+                    margin: EdgeInsets.all(30.0),
+                    decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.circular(14.5)),
+                    child: Center(
+                        child: Text(quotes[_index % quotes.length],
+                            style: TextStyle(
+                                color: Colors.grey.shade600,
+                                fontStyle: FontStyle.italic,
+                                fontSize: 16.5)))),
+              ),
+            ),
+            Divider(
+              thickness: 1.3,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 18.0),
+              child: FlatButton.icon(
+                  onPressed: _showQuote,
+                  color: Colors.greenAccent.shade700,
+                  icon: Icon(Icons.wb_sunny),
+                  label: Text(
+                    "Inspire me!",
+                    style: TextStyle(color: Colors.white, fontSize: 18.8),
+                  )),
+            ),
+            Spacer()
           ],
         ),
       ),
@@ -50,6 +77,5 @@ class _WisdomState extends State<Wisdom> {
     setState(() {
       _index++;
     });
-
   }
 }
