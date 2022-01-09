@@ -14,34 +14,34 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  
-  String _value = "";
-  void _onClicked () => setState(() => _value = new DateTime.now().toString());
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
         title: new Text("Name here"),
       ),
-
-      body: new Container(
-        color: Colors.green,
-        padding: new EdgeInsets.all(32.0),
-        child: new Center(
-          child: new Column(
+      drawer: new Drawer(
+        child: Container(
+          padding: EdgeInsets.all(32.0),
+          child: Column(
             children: <Widget>[
-              new Text(_value.toString())
+              Text('Hello Drawer'),
+              new RaisedButton(onPressed: () => Navigator.pop(context), child: Text('Close'),)
             ],
           ),
         ),
       ),
+      body: new Container(
+        padding: new EdgeInsets.all(32.0),
+        child: new Center(
+          child: new Column(
+            children: <Widget>[
+              new Text("Hello World"),
 
-      floatingActionButton: new FloatingActionButton(onPressed: _onClicked,
-        backgroundColor: Colors.red,
-        mini: true,
-        child: Icon(Icons.timer),),
-
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
