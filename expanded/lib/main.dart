@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
+
 void main(){
   runApp(new MaterialApp(
     home: new MyApp(),
@@ -14,8 +19,26 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  Map _countries = new Map();
+
+  void _getData() async {
+    var url = 'http://country.io/names.json';
+    var response = await http.get(url);
+
+    if (response.statusCode == 200){
+      setState(() => _countries = json.decode(response.body));
+      print('Loaded ${_countries.length} countries');
+    } else {
+      print("Status code: ${response.statusCode}");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    // _getData();
+
+
     return Scaffold(
       appBar: new AppBar(
         title: new Text("Name here"),
@@ -25,8 +48,19 @@ class _MyAppState extends State<MyApp> {
         child: new Center(
           child: new Column(
             children: <Widget>[
-              new Text("Image Demo"),
-              new Expanded(child: new Image.asset("images/flutter.png"),)
+              new Text('Countries', style: new TextStyle(fontWeight: FontWeight.bold),),
+              new Expanded(child: new ListView.builder(
+                  itemCount: _countries.length,
+                  itemBuilder: (BuildContext context, int index){
+                    String key = _countries.keys.elementAt(index);
+                    return new Row(
+                      children: <Widget>[
+                        new Text('${key} : '),
+                        new Text(_countries[key])
+                      ],
+                    );
+                  },
+              )),
 
               // new Image.network('http://voidrealms.com/images/smile.jpg')
             ],
@@ -34,5 +68,10 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
     );
+
+  }
+  @override
+  void initState(){
+    _getData();
   }
 }
