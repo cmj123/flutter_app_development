@@ -1,0 +1,4 @@
+#Tue Jan 25 17:03:44 GMT 2022
+base.0=/Users/esuabomdijemeni/Desktop/github/flutter_app_development/networking/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

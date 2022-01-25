@@ -1,0 +1,6 @@
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+com/example/networking/MainActivity.java
+ com.example.networking.MainActivity
+com/example/networking/BuildConfig.java
+ com.example.networking.BuildConfig
