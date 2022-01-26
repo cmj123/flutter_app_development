@@ -28,6 +28,18 @@ class _JsonParsingSimpleState extends State<JsonParsingSimple> {
       appBar: AppBar(
         title: Text("Parsing Json"),
       ),
+      body: Center(
+        child: FutureBuilder(
+          future: getData(),
+          builder: (context, AsyncSnapshot<dynamic> snapshot){
+            if (snapshot.hasData){
+              return Text(snapshot.data[0]['title']);
+            }
+            return CircularProgressIndicator();
+
+          },
+        ),
+      ),
     );
   }
 
@@ -36,6 +48,9 @@ class _JsonParsingSimpleState extends State<JsonParsingSimple> {
     String url = "https://jsonplaceholder.typicode.com/posts";
     Network network = Network(url);
     data = network.fetchData();
+    // data.then((value){
+    //   print(value[0]['title']);
+    // });
     return data;
   }
 }
@@ -50,7 +65,7 @@ class Network {
     Response response = await get(Uri.parse(url));
 
     if (response.statusCode == 200){
-      print(json.decode(response.body)[0]);
+      // print(json.decode(response.body)[0]);
       return json.decode(response.body);
     }else{
       print(response.statusCode);
